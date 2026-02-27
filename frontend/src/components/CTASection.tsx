@@ -8,7 +8,7 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 bg-royal-gradient relative overflow-hidden" ref={ref}>
+    <section className="py-24 bg-royal-gradient relative overflow-hidden " ref={ref}>
       <div className="absolute inset-0 heritage-pattern opacity-50" />
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}

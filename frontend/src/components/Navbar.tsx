@@ -3,11 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import kamalaLogo from "../assets/kamala.jpg";
 
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "Products", path: "/products" },
-  { label: "Login", path: "/login" },
+  // { label: "Login", path: "/login" },
 ];
 
 const Navbar = () => {
@@ -34,9 +35,21 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-gold-gradient font-heading text-2xl md:text-3xl font-bold tracking-wide">
-            Royal Pickle
+        <Link to="/" className="flex flex-col items-center justify-between gap-2">
+         {!isScrolled && (
+              <img
+                src={kamalaLogo}
+                alt="Kamala Pickle Logo"
+                className="w-auto items-center h-16 rounded-full shadow-md transition-all duration-300"
+              />
+            )}
+
+            <span
+              className={`text-gold-gradient font-montserrat font-bold tracking-wide transition-all duration-300 mb-2 ${
+                isScrolled ? "text-xl" : "text-2xl md:text-3xl"
+              }`}
+            >
+            KAMALA <span className="font-normal"> PICKLE </span>
           </span>
         </Link>
 
