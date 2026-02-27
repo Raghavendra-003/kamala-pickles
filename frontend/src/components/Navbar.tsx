@@ -4,6 +4,8 @@ import { Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import kamalaLogo from "../assets/kamala.jpg";
+import { useContext } from "react";
+import { CartContext } from "@/context/CartContext";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -15,6 +17,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const location = useLocation();
+
+  const context = useContext(CartContext);
+  const cartCount = context
+    ? context.cartItems.reduce((total, item) => total + item.quantity, 0)
+    : 0;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -40,7 +47,7 @@ const Navbar = () => {
               <img
                 src={kamalaLogo}
                 alt="Kamala Pickle Logo"
-                className="w-auto items-center h-16 rounded-full shadow-md transition-all duration-300"
+                className="w-auto items-center h-16 rounded-full  transition-all duration-300"
               />
             )}
 
@@ -68,10 +75,12 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Button variant="gold" size="sm" className="rounded-full">
-            <ShoppingCart className="w-4 h-4 mr-1" />
-            Cart (0)
-          </Button>
+          <Link to="/cart">
+            <Button variant="gold" size="sm" className="rounded-full">
+              <ShoppingCart className="w-4 h-4 mr-1" />
+              Cart ({cartCount})
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -106,10 +115,12 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+             <Link to="/cart">
               <Button variant="gold" size="sm" className="rounded-full w-fit mt-2">
                 <ShoppingCart className="w-4 h-4 mr-1" />
-                Cart (0)
+                Cart ({cartCount})
               </Button>
+            </Link>
             </div>
           </motion.div>
         )}
