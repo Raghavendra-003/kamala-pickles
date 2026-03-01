@@ -41,7 +41,7 @@ const Navbar = () => {
           : "bg-transparent py-5"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4">
+      <div className="container mx-auto flex items-center justify-between px-2">
         <Link to="/" className="flex flex-col items-center justify-between gap-2">
          {!isScrolled && (
               <img
