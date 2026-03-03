@@ -5,8 +5,15 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ShoppingCart } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
 
 const Cart: React.FC = () => {
+const [whatsAppMessage, setWhatsAppMessage] = React.useState("");
+const [showSuccess, setShowSuccess] = React.useState(false);
+const [currentOrderId, setCurrentOrderId] = React.useState("");
 
 const context = useContext(CartContext);
 
@@ -51,17 +58,12 @@ const cartCount = cartItems.reduce(
 
             const data = await response.json();
 
-            if (data.success) {
-              const orderId = data.orderId;
-
-              // Clear Cart
-              context.clearCart();
-
-             const orderDate = new Date().toLocaleString();
-
+           if (data.success) {
+           const orderId = data.orderId;
+            const orderDate = new Date().toLocaleString();
             let message = `Hello Kamala Pickle,\n\n`;
-            message += `My Order ID: ${orderId}\n`;
-
+            message += `My Order ID: ${orderId}\n\n`;
+            message += `Date: ${orderDate}\n\n`;
             message += `Order Details:\n`;
 
             cartItems.forEach((item, index) => {
@@ -70,16 +72,15 @@ const cartCount = cartItems.reduce(
             });
 
             message += `\nTotal Amount: ₹${getGrandTotal()}\n\n`;
-            
             message += `Please confirm my order.`;
 
-              const encodedMessage = encodeURIComponent(message);
+            setWhatsAppMessage(message);   
+            setCurrentOrderId(orderId);
+            setShowSuccess(true);
 
-              window.open(
-                `https://wa.me/${adminNumber}?text=${encodedMessage}`,
-                "_blank"
-              );
-            }
+
+              const encodedMessage = encodeURIComponent(message);
+            }          
           } catch (error) {
             console.error("Order failed", error);
           }
@@ -182,6 +183,47 @@ const cartCount = cartItems.reduce(
         )}
       </div>
       <Footer />
+      <Dialog open={showSuccess}>
+  <DialogContent className="max-w-lg text-center p-10 rounded-2xl">
+
+    {/* Celebration Emoji Animation */}
+    <div className="text-6xl animate-bounce mb-4">
+      🎉🎊
+    </div>
+
+    <h2 className="text-3xl font-bold text-green-600 mb-2">
+      Order Placed Successfully!
+    </h2>
+
+    <p className="text-lg mb-4">
+      Your Order ID:
+      <span className="font-bold text-black"> {currentOrderId}</span>
+    </p>
+
+    <p className="text-gray-500 mb-6">
+      Thank you for ordering from Kamala Pickle ❤️
+    </p>
+
+    <Button
+      className="bg-green-600 hover:bg-green-700 w-full h-12 text-lg"
+              onClick={() => {
+          setShowSuccess(false);
+
+          const encodedMessage = encodeURIComponent(whatsAppMessage);
+
+          clearCart();
+
+          window.open(
+            `https://wa.me/${adminNumber}?text=${encodedMessage}`,
+            "_blank"
+          );
+        }}
+    >
+      Continue to WhatsApp
+    </Button>
+
+  </DialogContent>
+ </Dialog>
     </>
   );
 };

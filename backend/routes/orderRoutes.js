@@ -13,14 +13,24 @@ router.get("/all", async (req, res) => {
   }
 });
 
-let orderCounter = 1000;
-
 router.post("/create-order", async (req, res) => {
   try {
     const { items, totalAmount } = req.body;
 
-    orderCounter++;
-    const orderId = `KP${orderCounter}`;
+    const lastOrder = await Order.findOne().sort({ createdAt: -1 });
+
+    let newOrderNumber = 1001;
+
+    if (lastOrder && lastOrder.orderId) {
+      const lastNumber = parseInt(lastOrder.orderId.replace("KP", ""));
+
+      // Safety check: if previous ID is too large, reset properly
+      if (!isNaN(lastNumber) && lastNumber < 100000) {
+        newOrderNumber = lastNumber + 1;
+      }
+    }
+
+    const orderId = `KP${newOrderNumber}`;
 
     const newOrder = new Order({
       orderId,
@@ -34,7 +44,9 @@ router.post("/create-order", async (req, res) => {
       success: true,
       orderId,
     });
+
   } catch (error) {
+    console.error("Save Error:", error);
     res.status(500).json({ success: false, message: error.message });
   }
 });
