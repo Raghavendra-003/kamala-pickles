@@ -12,7 +12,7 @@ const slides = [
   {
     image: heroMango,
     name: "Mango Pickle",
-    tagline: "Authentic Andhra-style mango pickle crafted with handpicked spices and sun-dried perfection.",
+    tagline: "Authentic Telangana-style mango pickle crafted with handpicked spices and sun-dried perfection.",
     price: "₹299 / 500g",
   },
   {

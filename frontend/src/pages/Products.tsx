@@ -32,8 +32,50 @@ interface Product {
 }
 
 const allProducts: Product[] = [
+
   {
     id: "1",
+    name: "Chicken Pickle",
+    image: productChicken,
+    category: "non-veg",
+    available: true,
+    desc: "Tender chicken pieces infused with bold spices.",
+    variants: [
+      { weight: "250g", price: 249 },
+      { weight: "500g", price: 449 },
+      { weight: "1kg", price: 849 },
+    ],
+  },
+
+  {
+    id: "2",
+    name: "Kakarakaya Pickle",
+    image: productKakarakaya,
+    category: "veg",
+    available: true,
+    desc: "Succulent kakarakaya pieces blended with rich traditional spices.",
+    variants: [
+      { weight: "250g", price: 149 },
+      { weight: "500g", price: 249 },
+      { weight: "1kg", price: 449 },
+    ],
+  },
+  {
+    id: "3",
+    name: "Mutton Pickle",
+    image: productMutton,
+    category: "non-veg",
+    available: true,
+    desc: "Succulent mutton pieces infused with rich traditional spices.",
+    variants: [
+      { weight: "250g", price: 249 },
+      { weight: "500g", price: 449 },
+      { weight: "1kg", price: 929 },
+    ],
+  },
+
+  {
+    id: "4",
     name: "Mango Pickle",
     image: heroMango,
     category: "veg",
@@ -46,7 +88,7 @@ const allProducts: Product[] = [
     ],
   },
   {
-    id: "2",
+    id: "5",
     name: "Gongura Pickle",
     image: heroGongura,
     category: "veg",
@@ -59,7 +101,7 @@ const allProducts: Product[] = [
     ],
   },
   {
-    id: "3",
+    id: "6",
     name: "Garlic Pickle",
     image: heroGarlic,
     category: "veg",
@@ -72,7 +114,7 @@ const allProducts: Product[] = [
     ],
   },
   {
-    id: "4",
+    id: "7",
     name: "Lemon Pickle",
     image: productLemon,
     category: "veg",
@@ -84,21 +126,9 @@ const allProducts: Product[] = [
       { weight: "1kg", price: 499 },
     ],
   },
+  
   {
-    id: "5",
-    name: "Chicken Pickle",
-    image: productChicken,
-    category: "non-veg",
-    available: true,
-    desc: "Tender chicken pieces infused with bold spices.",
-    variants: [
-      { weight: "250g", price: 249 },
-      { weight: "500g", price: 449 },
-      { weight: "1kg", price: 849 },
-    ],
-  },
-  {
-    id: "6",
+    id: "8",
     name: "Prawn Pickle",
     image: productPrawn,
     category: "non-veg",
@@ -110,32 +140,7 @@ const allProducts: Product[] = [
       { weight: "1kg", price: 929 },
     ],
   },
-  {
-    id: "7",
-    name: "Mutton Pickle",
-    image: productMutton,
-    category: "non-veg",
-    available: true,
-    desc: "Succulent mutton pieces infused with rich traditional spices.",
-    variants: [
-      { weight: "250g", price: 249 },
-      { weight: "500g", price: 449 },
-      { weight: "1kg", price: 929 },
-    ],
-  },
-  {
-    id: "8",
-    name: "Kakarakaya Pickle",
-    image: productKakarakaya,
-    category: "veg",
-    available: true,
-    desc: "Succulent kakarakaya pieces blended with rich traditional spices.",
-    variants: [
-      { weight: "250g", price: 149 },
-      { weight: "500g", price: 249 },
-      { weight: "1kg", price: 449 },
-    ],
-  },
+  
 ];
 
 const Products: React.FC = () => {

@@ -6,19 +6,32 @@ const testimonials = [
   {
     name: "Priya Sharma",
     location: "Mumbai",
-    text: "The mango pickle reminds me of my grandmother's recipe. Absolutely divine taste and premium quality!",
+    text: "The chicken pickle reminds me of my grandmother's recipe. Absolutely divine taste and premium quality!",
     rating: 5,
   },
   {
     name: "Rajesh Kumar",
     location: "Delhi",
-    text: "Best gongura pickle I've ever tasted outside of Andhra. The spice levels are perfect.",
+    text: "Best mutton pickle I've ever tasted. The spice levels are perfect.",
     rating: 5,
   },
+    {
+    name: "Vishwak anagani",
+    location: "Vijayawada",
+    text: "My entire family loved it.",
+    rating: 4.5,
+  },
+    {
+    name: "Arun Kumar",
+    location: "Bangalore",
+    text: "Best pickle I’ve tasted in years. Highly recommended!",
+    rating: 4.9,
+  },
+
   {
     name: "Ananya Reddy",
     location: "Hyderabad",
-    text: "Royal Pickle has set a new standard. The packaging is elegant and the taste is authentic. Love it!",
+    text: "Kamala Pickle has set a new standard. The packaging is elegant and the taste is authentic. Love it!",
     rating: 5,
   },
 ];

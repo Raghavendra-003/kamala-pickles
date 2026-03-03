@@ -183,7 +183,8 @@ const cartCount = cartItems.reduce(
         )}
       </div>
       <Footer />
-      <Dialog open={showSuccess}>
+      <Dialog open={showSuccess} onOpenChange={(open) => setShowSuccess(open)}>
+        
   <DialogContent className="max-w-lg text-center p-10 rounded-2xl">
 
     {/* Celebration Emoji Animation */}
@@ -201,8 +202,7 @@ const cartCount = cartItems.reduce(
     </p>
 
     <p className="text-gray-500 mb-6">
-      Thank you for ordering from Kamala Pickle ❤️
-    </p>
+     Thank you for choosing us ❤️.</p>
 
     <Button
       className="bg-green-600 hover:bg-green-700 w-full h-12 text-lg"

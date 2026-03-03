@@ -129,7 +129,7 @@ const FeaturedProducts: React.FC = () => {
               {!product.available && (
                 <div className="absolute inset-0 z-20 bg-black/40 backdrop-blur-md flex items-center justify-center">
                   <span className="text-white text-2xl text-center font-bold tracking-wider">
-                    Flavor in the Making..🔜
+                    Flavor in the Making...
                   </span>
                 </div>
               )}
