@@ -7,14 +7,16 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { CartContext } from "@/context/CartContext";
 
-import heroMango from "@/assets/hero-mango-pickle.jpg";
-import heroGongura from "@/assets/hero-gongura-pickle.jpg";
+import heroMango from "@/assets/product-mango.jpg";
+import heroGongura from "@/assets/product-gongura.jpg";
 import heroGarlic from "@/assets/hero-garlic-pickle.jpg";
 import productLemon from "@/assets/product-lemon.jpg";
 import productChicken from "@/assets/product-chicken.jpg";
 import productPrawn from "@/assets/product-prawn.jpg";
 import productMutton from "@/assets/product-mutton.jpg";
 import productKakarakaya from "@/assets/product-kakarakaya.jpg";
+import productAmla from "@/assets/product-amla.jpg";
+import productGreenApple from "@/assets/product-greenapple.jpg";
 
 interface Variant {
   weight: string;
@@ -80,7 +82,7 @@ const allProducts: Product[] = [
     image: heroMango,
     category: "veg",
     available: false,
-    desc: "Authentic Andhra-style mango pickle crafted with handpicked spices and sun-dried perfection.",
+    desc: "Authentic Telangana-style mango pickle crafted with handpicked spices and sun-dried perfection.",
     variants: [
       { weight: "250g", price: 149 },
       { weight: "500g", price: 299 },
@@ -100,19 +102,19 @@ const allProducts: Product[] = [
       { weight: "1kg", price: 649 },
     ],
   },
-  {
-    id: "6",
-    name: "Garlic Pickle",
-    image: heroGarlic,
-    category: "veg",
-    available: false,
-    desc: "Bold garlic flavor blended with traditional Andhra masala.",
-    variants: [
-      { weight: "250g", price: 159 },
-      { weight: "500g", price: 329 },
-      { weight: "1kg", price: 599 },
-    ],
-  },
+  // {
+  //   id: "6",
+  //   name: "Garlic Pickle",
+  //   image: heroGarlic,
+  //   category: "veg",
+  //   available: false,
+  //   desc: "Bold garlic flavor blended with traditional Andhra masala.",
+  //   variants: [
+  //     { weight: "250g", price: 159 },
+  //     { weight: "500g", price: 329 },
+  //     { weight: "1kg", price: 599 },
+  //   ],
+  // },
   {
     id: "7",
     name: "Lemon Pickle",
@@ -129,11 +131,24 @@ const allProducts: Product[] = [
   
   {
     id: "8",
-    name: "Prawn Pickle",
-    image: productPrawn,
-    category: "non-veg",
+    name: "GreenApple Pickle",
+    image: productGreenApple,
+    category: "veg",
     available: false,
-    desc: "Succulent prawns blended with rich traditional spices.",
+    desc: "Experience the refined tang of green apple, masterfully crafted with tradition, elegance, and a bold touch of timeless flavor.",
+    variants: [
+      { weight: "250g", price: 279 },
+      { weight: "500g", price: 499 },
+      { weight: "1kg", price: 929 },
+    ],
+  },
+  {
+    id: "9",
+    name: "Amla Pickle",
+    image: productAmla,
+    category: "veg",
+    available: false,
+    desc: "Succulent amla pieces.",
     variants: [
       { weight: "250g", price: 279 },
       { weight: "500g", price: 499 },

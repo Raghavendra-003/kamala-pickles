@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 import heroMango from "@/assets/hero-mango-pickle.jpg";
 import heroGongura from "@/assets/hero-gongura-pickle.jpg";
-import heroGarlic from "@/assets/hero-garlic-pickle.jpg";
+// import heroGarlic from "@/assets/hero-garlic-pickle.jpg";
+import heroAmla from "@/assets/hero-amla-pickle.jpg";
 
 const slides = [
   {
@@ -22,11 +23,18 @@ const slides = [
     // price: "₹349 / 500g",
   },
   {
-    image: heroGarlic,
-    name: "Garlic Pickle",
-    tagline: "Bold, aromatic garlic cloves infused with premium cold-pressed oil and spices.",
+    image: heroAmla,
+    name: "Amla Pickle",
+    tagline: "Bold, aromatic amla cloves infused with premium cold-pressed oil and spices.",
     // price: "₹329 / 500g",
   },
+  
+  // {
+  //   image: heroGarlic,
+  //   name: "Garlic Pickle",
+  //   tagline: "Bold, aromatic garlic cloves infused with premium cold-pressed oil and spices.",
+  //   // price: "₹329 / 500g",
+  // },
 ];
 
 const HeroCarousel = () => {
@@ -84,7 +92,7 @@ const HeroCarousel = () => {
                 {slides[current].tagline}
               </p>
               <p className="text-gold-gradient font-heading text-3xl font-bold mb-8">
-                {slides[current].price}
+                {/* {slides[current].price} */}
               </p>
               <div className="flex gap-4">
                 <Link to="/products">

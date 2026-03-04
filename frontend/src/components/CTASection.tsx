@@ -17,7 +17,7 @@ const CTASection = () => {
         className="container mx-auto px-4 text-center relative z-10"
       >
         <span className="text-gold font-serif text-2xl italic tracking-wider">Ready to Experience Tradition?</span>
-        <h2 className="font-heading text-4xl md:text-6xl font-bold text-gold-gradient mt-4 mb-6">
+        <h2 className="font-montserrat text-4xl md:text-6xl font-bold text-gold-gradient mt-4 mb-6">
           Taste <span className="text-gold-gradient">Tradition</span> Today
         </h2>
         <p className="text-cream/70 font-body text-lg max-w-lg mx-auto mb-10">

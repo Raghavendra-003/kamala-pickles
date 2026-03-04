@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
-            <h3 className="text-gold-gradient font-heading text-2xl font-bold mb-4">
+            <h3 className="text-3xl text-gold-gradient font-montserrat font-bold tracking-wide transition-all duration-300 mb-4">
               Kamala Pickle
             </h3>
             <p className="text-primary-foreground/70 font-body text-sm leading-relaxed">
