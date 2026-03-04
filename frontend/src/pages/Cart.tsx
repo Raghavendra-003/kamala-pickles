@@ -45,7 +45,7 @@ const cartCount = cartItems.reduce(
 
         const handlePlaceOrder = async () => {
           try {
-            const response = await fetch("http://localhost:5000/api/orders/create-order", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/create-order`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -55,6 +55,7 @@ const cartCount = cartItems.reduce(
                 totalAmount: getGrandTotal(),
               }),
             });
+            console.log(import.meta.env.VITE_API_URL);
 
             const data = await response.json();
 
