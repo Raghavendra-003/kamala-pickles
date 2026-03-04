@@ -56,6 +56,7 @@ const cartCount = cartItems.reduce(
               }),
             });
             console.log(import.meta.env.VITE_API_URL);
+            
 
             const data = await response.json();
 

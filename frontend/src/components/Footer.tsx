@@ -46,7 +46,7 @@ const Footer = () => {
           <div className="ml-16">
             <h4 className="font-heading text-lg mb-4 text-gold">Contact</h4>
             <div className="flex flex-col gap-2 text-primary-foreground/60 text-sm font-body">
-              <span>hello@royalpickle.com</span>
+              <span>kamalafoods0112@gmail.com</span>
               <span>+91 8143092138</span>
               <span>Hyderabad, Telangana</span>
             </div>
