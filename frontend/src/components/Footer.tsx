@@ -14,7 +14,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div>
+          <div className="ml-16">
             <h4 className="font-heading text-lg mb-4 text-gold">Quick Links</h4>
             <div className="flex flex-col gap-2">
               {["Home", "Products", "About Us"].map((item) => (
@@ -29,10 +29,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="font-heading text-lg mb-4 text-gold">Policies</h4>
             <div className="flex flex-col gap-2">
-              {["Shipping", "Returns", "Privacy Policy"].map((item) => (
+              {["Shipping", "Privacy Policy"].map((item) => (
                 <span
                   key={item}
                   className="text-primary-foreground/60 text-sm font-body cursor-pointer hover:text-gold transition-colors"
@@ -41,13 +41,13 @@ const Footer = () => {
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
 
-          <div>
+          <div className="ml-16">
             <h4 className="font-heading text-lg mb-4 text-gold">Contact</h4>
             <div className="flex flex-col gap-2 text-primary-foreground/60 text-sm font-body">
               <span>hello@royalpickle.com</span>
-              <span>+91 7251073544</span>
+              <span>+91 8143092138</span>
               <span>Hyderabad, Telangana</span>
             </div>
           </div>
