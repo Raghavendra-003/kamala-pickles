@@ -13,7 +13,8 @@ app.use(
     origin: [
       "http://localhost:8080",
       "http://localhost:5173",
-      "https://kamala-pickles.vercel.app"
+      "https://kamala-pickles.vercel.app",
+      "https://kamala-pickles-one.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
