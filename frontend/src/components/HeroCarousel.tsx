@@ -94,14 +94,16 @@ const HeroCarousel = () => {
               <p className="text-gold-gradient font-heading text-3xl font-bold mb-8">
                 {/* {slides[current].price} */}
               </p>
-              <div className="flex gap-4">
+              <div className="flex flex-row sm:flex-row gap-3 
+                items-center sm:items-start 
+                justify-center sm:justify-start">
                 <Link to="/products">
-                  <Button variant="gold" size="xl" className="rounded-full">
+                  <Button variant="gold" size="lg" className="rounded-full">
                     Shop Now
                   </Button>
                 </Link>
                 <Link to="/products">
-                  <Button variant="gold-outline" size="xl" className="rounded-full border-cream/40 text-cream hover:bg-cream/10 hover:text-cream">
+                  <Button variant="gold-outline" size="lg" className="rounded-full border-cream/40 text-cream hover:bg-cream/10 hover:text-cream">
                     Explore All
                   </Button>
                 </Link>
