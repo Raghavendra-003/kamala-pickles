@@ -1,27 +1,28 @@
 import mongoose from "mongoose";
 
-const orderSchema = new mongoose.Schema(
-  {
-    orderId: {
-      type: String,
-      unique: true,
-    },
-    items: [
-      {
-        productId: String,
-        name: String,
-        weight: String,
-        price: Number,
-        quantity: Number,
-      },
-    ],
-    totalAmount: Number,
-    status: {
-      type: String,
-      default: "Pending",
-    },
+const OrderSchema = new mongoose.Schema(
+{
+  orderId: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
+
+  items: [
+    {
+      name: String,
+      price: Number,
+      quantity: Number,
+      weight: String,
+      image: String,
+    },
+  ],
+
+  totalAmount: {
+    type: Number,
+    required: true,
+  },
+},
+{ timestamps: true }
 );
 
-export default mongoose.model("Order", orderSchema);
+export default mongoose.model("Order", OrderSchema);

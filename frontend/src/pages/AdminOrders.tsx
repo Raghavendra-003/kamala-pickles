@@ -9,7 +9,6 @@ interface Item {
 interface Order {
   _id: string;
   orderId: string;
-  customerName: string;
   totalAmount: number;
   items: Item[];
   createdAt: string;
@@ -19,11 +18,13 @@ const AdminOrders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/orders/all`)
-      .then(res => res.json())
-      .then(data => setOrders(data))
-      .catch(err => console.log("Error fetching orders:", err));
-  }, []);
+  fetch(`${import.meta.env.VITE_API_URL}/api/orders/all`)
+    .then(res => res.json())
+    .then(data => {
+      setOrders(data.orders);
+    })
+    .catch(err => console.log("Error fetching orders:", err));
+}, []);
 
        return (
         <div style={{ padding: 20, fontFamily: "Montserrat" }}>
