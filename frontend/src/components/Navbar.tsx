@@ -42,20 +42,23 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-2">
-        <Link to="/" className="flex flex-col items-center justify-between gap-2">
-         {!isScrolled && (
-              <img
-                src={kamalaLogo}
-                alt="Kamala Pickle Logo"
-                className="w-auto items-center h-16 rounded-full  transition-all duration-300"
-              />
-            )}
+        <Link
+          to="/"
+          className="flex flex-col items-center justify-between gap-2"
+        >
+          {!isScrolled && (
+            <img
+              src={kamalaLogo}
+              alt="Kamala Pickle Logo"
+              className="w-auto items-center h-16 rounded-full  transition-all duration-300"
+            />
+          )}
 
-            <span
-              className={`mt-2 text-gold-gradient font-montserrat font-bold tracking-wide transition-all duration-300 mb-2 ${
-                isScrolled ? "text-xl" : "text-2xl md:text-3xl"
-              }`}
-            >
+          <span
+            className={`mt-2 text-gold-gradient font-montserrat font-bold tracking-wide transition-all duration-300 mb-2 ${
+              isScrolled ? "text-xl" : "text-2xl md:text-3xl"
+            }`}
+          >
             KAMALA <span className="font-normal"> PICKLE </span>
           </span>
         </Link>
@@ -84,12 +87,20 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="md:hidden text-primary-foreground"
-        >
-          {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <Link to="/cart">
+            <Button variant="gold" size="sm" className="rounded-full">
+              <ShoppingCart className="w-4 h-4" />
+              <span className="ml-1 text-xs">{cartCount}</span>
+            </Button>
+          </Link>
+          <button
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            className="text-primary-foreground"
+          >
+            {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -115,12 +126,6 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-             <Link to="/cart">
-              <Button variant="gold" size="sm" className="rounded-full w-fit mt-2">
-                <ShoppingCart className="w-4 h-4 mr-1" />
-                Cart ({cartCount})
-              </Button>
-            </Link>
             </div>
           </motion.div>
         )}
