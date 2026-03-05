@@ -34,7 +34,6 @@ interface Product {
 }
 
 const allProducts: Product[] = [
-
   {
     id: "1",
     name: "Chicken Pickle",
@@ -128,7 +127,7 @@ const allProducts: Product[] = [
       { weight: "1kg", price: 499 },
     ],
   },
-  
+
   {
     id: "8",
     name: "GreenApple Pickle",
@@ -155,7 +154,6 @@ const allProducts: Product[] = [
       { weight: "1kg", price: 929 },
     ],
   },
-  
 ];
 
 const Products: React.FC = () => {
@@ -166,23 +164,19 @@ const Products: React.FC = () => {
     [key: string]: number;
   }>({});
 
-  const { addToCart } = useContext(CartContext);
+  const context = useContext(CartContext);
+
+  if (!context) {
+    return null; // or loading state
+  }
+
+  const { addToCart, decreaseQty, cartItems } = context;
 
   const filtered =
     filter === "all"
       ? allProducts
       : allProducts.filter((p) => p.category === filter);
-
-      const context = useContext(CartContext);
-      
-      if (!context) {
-        return null; // or loading state
-      }
-    const { cartItems } = context;
-      const cartCount = cartItems.reduce(
-  (total, item) => total + item.quantity,
-  0
-);
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#67548b] via-[#5a4680] to-[#3f2f5c]">
@@ -222,6 +216,11 @@ const Products: React.FC = () => {
           {filtered.map((product, i) => {
             const selectedIndex = selectedWeights[product.id] ?? 0;
             const selectedVariant = product.variants[selectedIndex];
+            const currentItemId = product.id + "-" + selectedVariant.weight;
+            const cartItem = cartItems?.find(
+              (item) => item.id === currentItemId,
+            );
+            const currentQuantity = cartItem?.quantity ?? 0;
 
             return (
               <motion.div
@@ -233,12 +232,12 @@ const Products: React.FC = () => {
               >
                 <div className="relative h-72 overflow-hidden">
                   {!product.available && (
-                        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10">
-                          <span className="text-white text-xl font-bold tracking-wide">
-                            Flavor in the Making..
-                          </span>
-                        </div>
-                      )}
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10">
+                      <span className="text-white text-xl font-bold tracking-wide">
+                        Flavor in the Making..
+                      </span>
+                    </div>
+                  )}
                   <img
                     src={product.image}
                     alt={product.name}
@@ -255,11 +254,13 @@ const Products: React.FC = () => {
                   </span>
                 </div>
 
-                <div className={`p-6 ${
-                        !product.available
-                          ? "blur-sm pointer-events-none select-none"
-                          : ""
-                      }`}>
+                <div
+                  className={`p-6 ${
+                    !product.available
+                      ? "blur-sm pointer-events-none select-none"
+                      : ""
+                  }`}
+                >
                   <h3 className="font-heading text-2xl font-semibold text-foreground mb-2">
                     {product.name}
                   </h3>
@@ -296,23 +297,55 @@ const Products: React.FC = () => {
                       </span>
                     </div>
 
-                    <Button
-                      variant="hero"
-                      size="sm"
-                      className="rounded-full"
-                      onClick={() =>
-                        addToCart({
-                          id: product.id + "-" + selectedVariant.weight,
-                          name: product.name,
-                          price: selectedVariant.price,
-                          weight: selectedVariant.weight,
-                          image: product.image,
-                        })
-                      }
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-1" />
-                      Add
-                    </Button>
+                    {currentQuantity === 0 ? (
+                      <Button
+                        variant="hero"
+                        size="sm"
+                        className="rounded-full"
+                        onClick={() => {
+                          addToCart({
+                            id: currentItemId,
+                            name: product.name,
+                            price: selectedVariant.price,
+                            weight: selectedVariant.weight,
+                            image: product.image,
+                          });
+                        }}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-1" />
+                        Add
+                      </Button>
+                    ) : (
+                      <div className="flex items-center justify-center gap-3 border rounded-full px-3 py-3 bg-hero text-hero-foreground">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            decreaseQty(currentItemId, selectedVariant.weight);
+                          }}
+                          className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-full hover:bg-white/20 active:bg-white/30 transition-colors touch-none"
+                        >
+                          −
+                        </button>
+                        <span className="min-w-[2rem] text-center font-semibold text-sm">
+                          {currentQuantity}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            addToCart({
+                              id: currentItemId,
+                              name: product.name,
+                              price: selectedVariant.price,
+                              weight: selectedVariant.weight,
+                              image: product.image,
+                            });
+                          }}
+                          className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-full hover:bg-white/20 active:bg-white/30 transition-colors touch-none"
+                        >
+                          +
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -324,8 +357,6 @@ const Products: React.FC = () => {
       <Footer />
     </div>
   );
-
 };
-
 
 export default Products;
