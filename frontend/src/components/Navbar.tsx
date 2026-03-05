@@ -16,6 +16,8 @@ const navLinks = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isFeaturedProductsVisible, setIsFeaturedProductsVisible] =
+    useState(false);
   const location = useLocation();
 
   const context = useContext(CartContext);
@@ -27,6 +29,27 @@ const Navbar = () => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFeaturedProductsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 },
+    );
+
+    const featuredProductsElement =
+      document.getElementById("featured-products");
+    if (featuredProductsElement) {
+      observer.observe(featuredProductsElement);
+    }
+
+    return () => {
+      if (featuredProductsElement) {
+        observer.unobserve(featuredProductsElement);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -88,12 +111,23 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-3">
-          <Link to="/cart">
-            <Button variant="gold" size="sm" className="rounded-full">
-              <ShoppingCart className="w-4 h-4" />
-              <span className="ml-1 text-xs">{cartCount}</span>
-            </Button>
-          </Link>
+          <AnimatePresence>
+            {isFeaturedProductsVisible && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Link to="/cart">
+                  <Button variant="gold" size="sm" className="rounded-full">
+                    <ShoppingCart className="w-4 h-4" />
+                    <span className="ml-1 text-xs">{cartCount}</span>
+                  </Button>
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             className="text-primary-foreground"

@@ -97,7 +97,11 @@ const FeaturedProducts: React.FC = () => {
   const { addToCart, decreaseQty, cartItems } = context;
 
   return (
-    <section className="py-8 bg-cream-gradient" ref={ref}>
+    <section
+      className="py-8 bg-cream-gradient"
+      ref={ref}
+      id="featured-products"
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
